@@ -1,0 +1,347 @@
+/* -------------------------------------------------------
+   GLOBAL ROOT VARIABLES
+------------------------------------------------------- */
+:root {
+    --neon-blue: #00eaff;
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(0, 255, 255, 0.3);
+    --btn-bg: #00eaff;
+    --btn-text: #000;
+
+    --text-main: #ffffff;
+    --text-muted: #d9d9d9;
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+/* -------------------------------------------------------
+   WEATHER THEME COLOR OVERRIDES
+------------------------------------------------------- */
+body.warm {
+    background-image: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    --neon-blue: #ff6fb1;
+    --input-border: rgba(255, 111, 177, 0.4);
+    --btn-bg: #ff6fb1;
+}
+
+body.hot {
+    background-image: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    --neon-blue: #ff8c42;
+    --input-border: rgba(255, 140, 66, 0.4);
+    --btn-bg: #ff8c42;
+}
+
+body.cool {
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    --neon-blue: #00d4ff;
+    --input-border: rgba(0, 212, 255, 0.4);
+    --btn-bg: #00d4ff;
+}
+
+body.cold {
+    background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+    --neon-blue: #b26bff;
+    --input-border: rgba(178, 107, 255, 0.4);
+    --btn-bg: #b26bff;
+}
+
+body.rain {
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+    --neon-blue: #4ac0ff;
+    --input-border: rgba(74, 192, 255, 0.4);
+    --btn-bg: #4ac0ff;
+}
+
+/* -------------------------------------------------------
+   PAGE LAYOUT
+------------------------------------------------------- */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: background-image 1s ease;
+    color: var(--text-main);
+    font-family: "Poppins", sans-serif;
+}
+
+/* -------------------------------------------------------
+   CARD
+------------------------------------------------------- */
+.weather-card {
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 25px;
+
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+
+    transition: all 0.3s ease;
+}
+
+/* -------------------------------------------------------
+   SEARCH BOX
+------------------------------------------------------- */
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+/* Insane Neon Input */
+.neon-input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.neon-input:focus {
+    border-color: var(--neon-blue);
+    background: rgba(0, 243, 255, 0.05);
+    box-shadow:
+        0 0 20px rgba(0, 243, 255, 0.2),
+        inset 0 0 15px rgba(0, 243, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Insane Neon Button */
+.neon-btn {
+    position: relative;
+    background: rgba(0, 243, 255, 0.05);
+    border: 1px solid var(--neon-blue);
+    color: var(--neon-blue);
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+    z-index: 1;
+}
+
+.neon-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--neon-blue);
+    transition: width 0.3s ease;
+    z-index: -1;
+    transform: skewX(-15deg);
+    transform-origin: left;
+}
+
+.neon-btn:hover::before {
+    width: 150%;
+}
+
+.neon-btn:hover {
+    color: #000;
+    box-shadow:
+        0 0 30px var(--neon-blue),
+        0 0 60px var(--neon-blue);
+    border-color: transparent;
+    transform: scale(1.05);
+}
+
+.neon-btn:active {
+    transform: scale(0.95);
+}
+
+/* Warning Variant override */
+.neon-btn.warning {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+    background: rgba(255, 0, 85, 0.05);
+    box-shadow: 0 0 10px rgba(255, 0, 85, 0.1);
+}
+
+.neon-btn.warning::before {
+    background: var(--neon-pink);
+}
+
+.neon-btn.warning:hover {
+    color: #fff;
+    box-shadow:
+        0 0 30px var(--neon-pink),
+        0 0 60px var(--neon-pink);
+}
+
+/* -------------------------------------------------------
+   WEATHER INFO
+------------------------------------------------------- */
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    animation: slideUp 0.5s ease;
+}
+
+.main-info {
+    text-align: center;
+}
+
+#country {
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+#cityName {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+/* Temperature */
+.temp-block {
+    display: inline-block;
+    position: relative;
+}
+
+#temperature {
+    font-size: 5rem;
+    font-weight: 700;
+    background: linear-gradient(to bottom, #fff, rgba(255, 255, 255, 0.5));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.unit {
+    font-size: 2rem;
+    vertical-align: top;
+    color: var(--text-muted);
+}
+
+#condition {
+    font-size: 1.2rem;
+    color: var(--neon-blue);
+    text-transform: capitalize;
+    margin-top: -10px;
+}
+
+/* -------------------------------------------------------
+   DETAILS GRID
+------------------------------------------------------- */
+.grid-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.detail-card {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.detail-card:hover {
+    border-color: var(--glass-border);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.detail-card .label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.detail-card .value {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* -------------------------------------------------------
+   SUN TIMES
+------------------------------------------------------- */
+.sun-times {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    padding-top: 15px;
+    border-top: 1px solid var(--glass-border);
+}
+
+/* -------------------------------------------------------
+   ANIMATIONS
+------------------------------------------------------- */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--neon-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* -------------------------------------------------------
+   RESPONSIVENESS
+------------------------------------------------------- */
+@media (max-width: 480px) {
+    .search-box {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .search-btn {
+        width: 100%;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .neon-input {
+        font-size: 15px;
+        padding: 10px 14px;
+    }
+
+    #temperature {
+        font-size: 4rem;
+    }
+
+    #cityName {
+        font-size: 1.5rem;
+    }
+}

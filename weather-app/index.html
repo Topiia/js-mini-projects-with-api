@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Weather | Live Forecast</title>
+  <link rel="stylesheet" href="../shared/design-system.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="weather-card glass-panel">
+    <div class="search-box">
+      <input type="text" id="cityInput" class="neon-input" placeholder="Enter city name..." autocomplete="off">
+      <button id="searchBtn" class="search-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div id="weatherDisplay" class="weather-info hidden">
+      <div class="main-info">
+        <div class="location-badge">
+          <span id="country">IN</span>
+          <h2 id="cityName">Mumbai</h2>
+        </div>
+        <div class="temp-block">
+          <span id="temperature">28</span><span class="unit">°C</span>
+          <p id="condition">Haze</p>
+        </div>
+      </div>
+
+      <div class="grid-details">
+        <div class="detail-card">
+          <span class="label">Feels Like</span>
+          <span class="value" id="feelsLike">30°</span>
+        </div>
+        <div class="detail-card">
+          <span class="label">Humidity</span>
+          <span class="value" id="humidity">65%</span>
+        </div>
+        <div class="detail-card">
+          <span class="label">Wind</span>
+          <span class="value" id="windSpeed">12 km/h</span>
+        </div>
+        <div class="detail-card">
+          <span class="label">Visibility</span>
+          <span class="value" id="visibility">4 km</span>
+        </div>
+      </div>
+
+      <div class="sun-times">
+        <div class="sun-item">🌅 <span id="sunrise">06:00 AM</span></div>
+        <div class="sun-item">🌇 <span id="sunset">06:30 PM</span></div>
+      </div>
+    </div>
+
+    <div id="errorDisplay" class="error-msg hidden">
+      <p>🚫 City not found. Please try again.</p>
+    </div>
+
+    <div id="loader" class="loader hidden"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
